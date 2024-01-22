@@ -1,2 +1,2 @@
 #!/usr/bin/python3
-import this  # imports the Zen of Python
+import this  # imports The Zen of Python
