@@ -1,3 +1,5 @@
 #!/usr/bin/python3
-alphabet_string = ''.join(chr(char) for char in range(ord('a'), ord('z') + 1))
-print(alphabet_string)
+alpahbet = ""
+for letter in range(97, 123):
+    alpahbet += chr(letter)
+print("{}".format(alpahbet.lower()), end="")
