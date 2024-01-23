@@ -1,3 +1,3 @@
 #!/usr/bin/python3
-for char in range(ord('a'), ord('z') + 1):
-    print(chr(chr), end='')
+alphabet_string = ''.join(chr(char) for char in range(ord('a'), ord('z') + 1))
+print(alphabet_string)
