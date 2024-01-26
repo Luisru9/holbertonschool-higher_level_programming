@@ -1,10 +1,15 @@
-#!/usr/bin/python3
-if __name__ == "__main__":
-    import calculator_1 as calc
-    # * asing values to a and b
+#!usr/bin/python3
+from calculator_1 import add, subtract, multiply, divide
+
 a = 10
 b = 5
-print(f"{a} + {b} = {calc.add(a, b)}")
-print(f"{a} + {b} = {calc.sub(a, b)}")
-print(f"{a} + {b} = {calc.mul(a, b)}")
-print(f"{a} + {b} = {calc.div(a, b)}")
+
+result_add = add(a, b)
+result_subtract = subtract(a, b)
+result_multiply = multiply(a, b)
+result_divide = divide(a, b)
+
+print(f"Result of adding: {result_add}")
+print(f"Result of subtracting: {result_subtract}")
+print(f"Result of multiplying: {result_multiply}")
+print(f"Result of dividing: {result_divide}")
