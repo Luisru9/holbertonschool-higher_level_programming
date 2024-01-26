@@ -1,4 +1,4 @@
-#!/usr/bin/pynthon3
+#!/usr/bin/python3
 
 import sys
 
