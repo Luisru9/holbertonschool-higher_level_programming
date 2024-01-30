@@ -1,13 +1,9 @@
 #!/usr/bin/python3
 def uniq_add(my_list=[]):
-    total_sum = 0
-
-    unique_set = set()
-
-    for number in my_list:
-        if number not in unique_set:
-
-            total_sum += number
-            unique_set.add(number)
-
-            return total_sum
+    if my_list is None:
+        return None
+    res = 0
+    for i in range(len(my_list)):  # for i in my_list:
+        if my_list[i] not in my_list[:i]:  # if i not in my_list[:i]:
+            res += my_list[i]  # sum value to total
+    return res
