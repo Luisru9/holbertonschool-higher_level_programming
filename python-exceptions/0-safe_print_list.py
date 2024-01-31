@@ -1,13 +1,11 @@
 #!/usr/bin/python3
 def safe_print_list(my_list=[], x=0):
-    if not my_list or x == 0:
-        print()
-        return 0
-    try:
-        for i in range(0, x):
+    a = 0
+    for i in range(x):
+        try:
             print("{}".format(my_list[i]), end="")
-            print()
-            return i + 1
-    except (IndentationError, TypeError):
-        print()
-        return i
+            a += 1
+        except IndexError:
+            break
+        print("")
+        return a
