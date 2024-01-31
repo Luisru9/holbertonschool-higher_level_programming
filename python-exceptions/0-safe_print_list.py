@@ -5,5 +5,7 @@ def safe_print_list(my_list=[], x=0):
             print(my_list[i])
     except IndexError:
         print("IndexError: The list does not have enough elements.")
+        return "Not enough elements"
     finally:
         print()
+        return "Printed successfully"
