@@ -1,10 +1,12 @@
 #!/usr/bin/python
 def safe_print_list(my_list=[], x=0):
     try:
-        for element in my_list[:x]:
-            print(element, end="")
+        count = 0
+        for i in range(x):
+            print(my_list[i], end=" ")
+            count += 1
     except IndexError:
         pass
     finally:
         print()
-    return min(x, len(my_list))
+        return count
