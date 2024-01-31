@@ -3,10 +3,12 @@ def safe_print_list(my_list=[], x=0):
     count_elements = 0
     try:
         for i in range(x):
-            print("{}".format(my_list[i]), end=' ')
+            # Replace the print statement with an empty string
+            result_str = "{} ".format(my_list[i])
             count_elements += 1
     except IndexError:
         pass
     finally:
-        print()
+        # Print the result string outside the loop
+        print(result_str)
     return count_elements
