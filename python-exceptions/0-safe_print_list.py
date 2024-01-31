@@ -1,11 +1,13 @@
 #!/usr/bin/python
 def safe_print_list(my_list=[], x=0):
-    try:
-        for i in range(x):
-            print(my_list[i])
-    except IndexError:
-        print("IndexError: The list does not have enough elements.")
-        return "Not enough elements"
-    finally:
+    if not my_list or x == 0:
         print()
-        return "Printed successfully"
+        return 0
+    try:
+        for i in range(0, x):
+            print("{}".format(my_list[i]), end="")
+        print()
+        return i + 1
+    except (IndexError, TypeError):
+        print()
+        return i
