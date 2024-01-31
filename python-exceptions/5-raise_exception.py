@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 def raise_exception():
     try:
-        # Raise a custom type exception
-        raise TypeError(
-            "Custom type exception: This is an intentional exception.")
+        # Attempting an operation that would cause a TypeError
+        result = 1 + "2"
     except TypeError as e:
-        # Print the exception message
-        print(e)
+        # Raising a custom type exception with a specific message
+        raise TypeError("Custom type exception: {}".format(e))
