@@ -1,12 +1,13 @@
 #!/usr/bin/python
 def safe_print_list(my_list=[], x=0):
-    count = 0
-    try:
-        for element in my_list[:x]:
-            print(element, end="")
-            count += 1
-    except IndexError:
-        pass
-    finally:
+    if not my_list or x == 0:
         print()
-    return count
+        return 0
+
+    try:
+        printed_elements = [str(element) for element in my_list[:x]]
+        print("".join(printed_elements))
+        return len(printed_elements)
+    except (IndexError, TypeError):
+        print()
+        return len(printed_elements)
