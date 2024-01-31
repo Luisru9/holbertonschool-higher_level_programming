@@ -1,15 +1,13 @@
 #!/usr/bin/python
 def safe_print_list(my_list=[], x=0):
-    count_elements = 0
-    try:
-        for element in my_list:
-            if count_elements < x:
-                print("{}".format(element), end="")
-                count_elements += 1
-            else:
-                break
-    except TypeError:
-        pass
-    finally:
+    if not my_list or x == 0:
         print()
-    return count_elements
+        return 0
+    try:
+        for i in range(0, x):
+            print("{}".format(my_list[i]), end="")
+        print()
+        return i + 1
+    except (IndexError, TypeError):
+        print()
+        return i
