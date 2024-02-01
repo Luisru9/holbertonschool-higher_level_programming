@@ -1,0 +1,18 @@
+import unittest
+from io import StringIO
+import sys
+
+class TestTextIndentation(unittest.TestCase):
+    def test_text(self):
+        """Test printing text with indentation."""
+        capturedOutput = StringIO()
+        sys.stdout = capturedOutput
+        text_indentation("Hello. How are you? Today: Sun.")
+        sys.stdout = sys.__stdout__
+        expected_output = "Hello.\n\nHow are you?\n\nToday:\n\nSun."
+        self.assertEqual(capturedOutput.getvalue().strip(), expected_output)
+
+    def test_non_string(self):
+        """Test with non-string input."""
+        with self.assertRaises(TypeError):
+            text_indentation(123)

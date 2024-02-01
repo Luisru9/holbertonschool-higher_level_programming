@@ -1,0 +1,22 @@
+import unittest
+from io import StringIO
+import sys
+
+class TestPrintSquare(unittest.TestCase):
+    def test_square(self):
+        """Test printing a square."""
+        capturedOutput = StringIO()
+        sys.stdout = capturedOutput
+        print_square(3)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(capturedOutput.getvalue().strip(), "###\n###\n###")
+
+    def test_non_integer(self):
+        """Test with non-integer size."""
+        with self.assertRaises(TypeError):
+            print_square("3")
+
+    def test_negative_integer(self):
+        """Test with negative size."""
+        with self.assertRaises(ValueError):
+            print_square(-3)

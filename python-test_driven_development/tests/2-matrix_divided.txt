@@ -1,0 +1,24 @@
+import unittest
+
+class TestMatrixDivided(unittest.TestCase):
+    def test_matrix_division(self):
+        matrix = [
+            [1, 2, 3],
+            [4, 5, 6]
+        ]
+        self.assertEqual(matrix_divided(matrix, 2), [[0.5, 1.0, 1.5], [2.0, 2.5, 3.0]])
+
+    def test_non_number_divisor(self):
+        matrix = [[1, 2], [3, 4]]
+        with self.assertRaises(TypeError):
+            matrix_divided(matrix, "Holberton")
+
+    def test_division_by_zero(self):
+        matrix = [[1, 2], [3, 4]]
+        with self.assertRaises(ZeroDivisionError):
+            matrix_divided(matrix, 0)
+
+    # More tests can be added (e.g., wrong matrix format, rows of different sizes, etc.)
+
+if __name__ == "__main__":
+    unittest.main()

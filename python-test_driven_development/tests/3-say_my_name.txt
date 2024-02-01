@@ -1,0 +1,22 @@
+import unittest
+from io import StringIO
+import sys
+
+class TestSayMyName(unittest.TestCase):
+    def test_names(self):
+        """Test with proper first and last names."""
+        capturedOutput = StringIO()
+        sys.stdout = capturedOutput
+        say_my_name("John", "Doe")
+        sys.stdout = sys.__stdout__
+        self.assertEqual(capturedOutput.getvalue().strip(), "My name is John Doe")
+
+    def test_non_string_first_name(self):
+        """Test with non-string first name."""
+        with self.assertRaises(TypeError):
+            say_my_name(123, "Doe")
+
+    def test_non_string_last_name(self):
+        """Test with non-string last name."""
+        with self.assertRaises(TypeError):
+            say_my_name("John", 456)
