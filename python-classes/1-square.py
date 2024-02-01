@@ -17,4 +17,4 @@ class Square:
         Note:
             No type or value verification is performed on the size.
         """
-        self.__size = size
+        self.__size = size  # this is a hidden attribute
