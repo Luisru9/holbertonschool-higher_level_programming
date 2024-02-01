@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""Square module - provides an empty class Square"""
+
+
 class Square:
     """This is a Square class.
 
@@ -14,4 +17,4 @@ class Square:
            size (int): size of the square
 
        """
-        self.__size = size  # this is a hidden attribute
+        self.__size = size  # this is a private attribute
