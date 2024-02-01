@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """This is a module containing a class for representing a Square."""
 
 
