@@ -20,3 +20,6 @@ class TestPrintSquare(unittest.TestCase):
         """Test with negative size."""
         with self.assertRaises(ValueError):
             print_square(-3)
+
+            if __name__ == '__main__':
+            unittest.main()
