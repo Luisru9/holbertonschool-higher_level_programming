@@ -1,25 +1,32 @@
-import unittest
-from io import StringIO
-import sys
+>>> print_square = __import__('4-print_square').print_square
+>>> print_square(4)
+####
+####
+####
+####
+>>> print_square(10)
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+>>> print_square(0)
 
-class TestPrintSquare(unittest.TestCase):
-    def test_square(self):
-        """Test printing a square."""
-        capturedOutput = StringIO()
-        sys.stdout = capturedOutput
-        print_square(3)
-        sys.stdout = sys.__stdout__
-        self.assertEqual(capturedOutput.getvalue().strip(), "###\n###\n###")
-
-    def test_non_integer(self):
-        """Test with non-integer size."""
-        with self.assertRaises(TypeError):
-            print_square("3")
-
-    def test_negative_integer(self):
-        """Test with negative size."""
-        with self.assertRaises(ValueError):
-            print_square(-3)
-
-            if __name__ == '__main__':
-            unittest.main()
+>>> print_square(1)
+#
+>>> print_square(-1)
+Traceback (most recent call last):
+    ...
+ValueError: size must be >= 0
+>>> print_square("ḧello")
+Traceback (most recent call last):
+    ...
+TypeError: size must be an integer
+>>> print_square()
+Traceback (most recent call last)
+TypeError: print_square() missing 1 required positional argument: 'size'
