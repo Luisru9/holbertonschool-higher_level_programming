@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 class Rectangle:
     """Rectangle class with width and height attributes."""
 
@@ -41,3 +40,12 @@ class Rectangle:
     def __str__(self):
         """String representation of the Rectangle."""
         return f"{{'_Rectangle__height': {self.__height}, '_Rectangle__width': {self.__width}}}"
+
+
+# Create instances in the desired order
+rectangle1 = Rectangle(width=2, height=4)
+rectangle2 = Rectangle(width=10, height=3)
+
+# Accessing the string representation of the instances
+print(rectangle1)  # Output: {'_Rectangle__height': 4, '_Rectangle__width': 2}
+print(rectangle2)  # Output: {'_Rectangle__height': 3, '_Rectangle__width': 10}
