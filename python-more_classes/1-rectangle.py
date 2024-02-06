@@ -3,10 +3,7 @@ class Rectangle:
     """Rectangle class"""
 
     def __init__(self, width=0, height=0):
-        if type(width) is not int or type(height) is not int or width < 0 or height < 0:
-            raise ValueError("width and height must be non-negative integers")
-
-        self.__width, self.__height = width, height
+        self.width, self.height = width, height
 
     @property
     def width(self):
@@ -14,7 +11,7 @@ class Rectangle:
 
     @width.setter
     def width(self, value):
-        if type(value) is not int or value < 0:
+        if not isinstance(value, int) or value < 0:
             raise ValueError("width must be a non-negative integer")
         self.__width = value
 
@@ -24,7 +21,7 @@ class Rectangle:
 
     @height.setter
     def height(self, value):
-        if type(value) is not int or value < 0:
+        if not isinstance(value, int) or value < 0:
             raise ValueError("height must be a non-negative integer")
         self.__height = value
 
