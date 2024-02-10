@@ -1,0 +1,71 @@
+#### General ####
+
+
+#What is a superclass, baseclass or parentclass
+--- A superclass, baseclass, or parentclass is a class that is being inherited from by another class.
+    It provides the attributes and methods that the subclass can use or override.
+
+#What is a subclass
+--- A subclass is a class that inherits from a superclass or parentclass. It can use or override the
+    attributes and methods provided by the superclass.
+
+#How to list all attributes and methods of a class or instance
+--- To list all attributes and methods of a class or instance, you can use the built-in dir() function
+    in Python. It returns a list of all the available attributes and methods in the object.
+
+#When can an instance have new attributes
+--- An instance can have new attributes at any time by simply assigning a value to a new attribute name.
+     This will create a new attribute for that instance only, and not affect other instances or the class itself.
+
+#How to inherit class from another
+--- To inherit a class from another, you can define the new class with the name of the superclass in parentheses
+     after the class name. For example, class Subclass(Superclass):.
+
+#How to define a class with multiple base classes
+--- To define a class with multiple base classes, you can list the superclass names in parentheses after the class name,
+    separated by commas. For example, class Subclass(Superclass1, Superclass2):.
+
+#What is the default class every class inherit from
+--- The default class that every class inherits from in Python is the object class. This is the root of the class hierarchy in Python.
+
+#How to override a method or attribute inherited from the base class
+--- To override a method or attribute inherited from the base class, you can define a new method or attribute with the same name in the subclass.
+     This will replace the inherited method or attribute with the new one.
+
+#Which attributes or methods are available by heritage to subclasses
+---All attributes and methods that are available in the superclass are available by heritage to subclasses. This means that subclasses can use or
+    override any attributes or methods provided by the superclass.
+
+#What is the purpose of inheritance
+--- The purpose of inheritance is to allow classes to reuse code from other classes, and to create a hierarchy of related classes with shared attributes and methods.
+
+#What are, when and how to use isinstance, issubclass, type and super built-in functions
+--- The isinstance() function is used to check if an object is an instance of a class or any of its subclasses. The issubclass() function is used to check if a class
+    is a subclass of another class or any of its subclasses. The type() function is used to get the type of an object or class. The super() function is used to call
+    a method in the superclass from the subclass.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# How to list the available attibuted and methods of an object?
+     we can do that with the buitl in function [dir()]
+        it returns a lsit with all the available atts and methods in an object
+
+# Inheritance
+    To andd inheritance to a class jsut add the name of the (parent class in the parameter) of the class we are making
+            class DerivedClass(BaseClass)
+                <statment-1>
+                '
+                '
+                '
+                <statment-n>
+
+isinstance() and issubclass() are both built-in functions in Python that are used to check the type of an object or a class, respectively.
+
+isinstance() is used to check if an object is an instance of a class or any of its subclasses. It takes two arguments: the object you want to
+check and the class or tuple of classes you want to check against. The function returns True if the object is an instance of the specified class
+ or any of its subclasses, and False otherwise.
+
+issubclass() is used to check if a class is a subclass of another class or any of its subclasses. It takes two arguments: the class you want to
+check and the class or tuple of classes you want to check against. The function returns True if the first argument is a subclass of the second argument
+ or any of its subclasses, and False otherwise.the object you want to check and the class or tuple of classes you want to check against. The function returns True if
+the object is an instance of the specified class or any of its subclasses, and False otherwise.
