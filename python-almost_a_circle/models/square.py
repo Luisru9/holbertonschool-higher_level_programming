@@ -1,81 +1,110 @@
 #!/usr/bin/python3
-
-"""
-
-This modules defines a Square class
-
-"""
-
+"""Square Class"""
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
     """
-    A Square class
+    Square Class
     """
 
-    def __init__(self, size: int, x=0, y=0, id=None):
-        """ __init__ method.
-
-        Initialization method
+    def __init__(self, size, x=0, y=0, id=None):
+        """
+        Initialize a Square instance.
 
         Args:
-            size (:obj:`int`): Size of the square
-            x (:obj:`int`, optional): X position
-            y (:obj:`int`, optional): Y position
-            id (:obj:`int`): id of the instance
+            size (int): The size of the square.
+            x (int): The x-coordinate of the square's position.
+            y (int): The y-coordinate of the square's position.
+            id (int): The ID of the square.
+
+        Returns:
+            None
         """
         super().__init__(size, size, x, y, id)
 
     @property
     def size(self):
-        """Getter for size attribute."""
+        """
+        Get the size of the square.
+
+        Returns:
+            int: The size of the square.
+        """
         return self.width
 
     @size.setter
-    def size(self, value: int):
-        """Setter for size attribute."""
+    def size(self, value):
+        """
+        Set the size of the square.
+
+        Args:
+            value (int): The new size of the square.
+
+        Returns:
+            None
+        """
         self.width = value
         self.height = value
 
     def update(self, *args, **kwargs):
         """
-        Updates the values of the Square
+        Update the attributes of the Rectangle object.
 
         Args:
-            args (:obj:`tuple`): Arguments
-        """
-        if len(args) > 0:
-            try:
-                self.id = args[0]
-                self.width = args[1]
-                self.height = args[1]
-                self.x = args[2]
-                self.y = args[3]
-            except IndexError:
-                return
+            *args: Variable length argument list containing
+            the new values for the attributes.
+                    The order of the arguments should be:
+                    id, size, x, y.
+            **kwargs: Keyword arguments containing the new values
+            for the attributes. The keys should be the attribute names
+            and the values should be the new values.
 
-        self.id = kwargs.get('id', self.id)
-        self.width = kwargs.get('size', self.width)
-        self.height = kwargs.get('size', self.height)
-        self.x = kwargs.get('x', self.x)
-        self.y = kwargs.get('y', self.y)
+        Returns:
+            None
+        """
+        if args:
+            for count, arg in enumerate(args):
+                if count == 0:
+                    self.id = arg
+                elif count == 1:
+                    self.size = arg
+                elif count == 2:
+                    self.x = arg
+                elif count == 3:
+                    self.y = arg
+                else:
+                    continue
+        elif kwargs and args != 0:
+            for key, value in kwargs.items():
+                if key == "id":
+                    self.id = value
+                elif key == "size":
+                    self.size = value
+                elif key == "x":
+                    self.x = value
+                elif key == "y":
+                    self.y = value
+                else:
+                    break
 
     def to_dictionary(self):
         """
-        Creates a dictionary with the representation of a Square
-
-        Returns:
-            A dictionary with the representation of a Square
+        Returns a dictionary representation of the Square instance.
         """
-        dict_repr = {
-            'id': self.id,
-            'size': self.width,
-            'x': self.x,
-            'y': self.y
+        return {
+            "id": self.id,
+            "size": self.size,
+            "x": self.x,
+            "y": self.y
         }
 
-        return dict_repr
-
     def __str__(self):
-        return f'[Square] ({self.id}) {self.x}/{self.y} - {self.width}'
+        """
+        Return a string representation of the square.
+
+        Returns:
+            str: The string representation of the square.
+        """
+        return "[Square] ({}) {}/{} - {}".format(self.id,
+                                                 self.x, self.y, self.width)

@@ -1,155 +1,76 @@
 #!/usr/bin/python3
-
-"""
-
-This modules defines a Base class
-
-"""
-
+"""Base Class"""
 import json
-import csv
-import os
 
 
-class Base:
+class Base():
     """
-    Base class
-
-    Attributes:
-        __nb_objects (:obj:`int`): Counter of objects
+    Base class for all other classes in the project.
     """
+
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """ __init__ method.
-
-        Initialization method
+        """
+        Initializes a new instance of the Base class.
 
         Args:
-            id (:obj:`int`): id of the instance
+            id (int): The ID of the instance. If not provided,
+                a unique ID will be assigned.
         """
         if id is not None:
             self.id = id
         else:
             Base.__nb_objects += 1
-            self.id = self.__nb_objects
+            self.id = Base.__nb_objects
 
     @staticmethod
     def to_json_string(list_dictionaries):
         """
-        Gets the JSON representation of a list of dictionaries
+        Convert a list of dictionaries to a JSON string.
 
         Args:
-            list_dictionaries (:obj:`list[dict]`): A list of dictionaries
+            list_dictionaries (list): A list of dictionaries.
 
         Returns:
-            The JSON representation of a list of dictionaries
+            str: A JSON string representation of the list of dictionaries.
         """
-        if list_dictionaries is None or len(list_dictionaries) == 0:
-            return '[]'
-
+        if list_dictionaries is None or len(list_dictionaries) == []:
+            return "[]"
         return json.dumps(list_dictionaries)
-
-    @staticmethod
-    def from_json_string(json_string: str):
-        """
-        Gets the list of the JSON string representation json_string
-
-        Args:
-            json_string (:obj:`str`): A string representating a list of dicts
-
-        Returns:
-            The list of the JSON string representation json_string
-        """
-        if json_string is None or json_string == '':
-            return []
-
-        return json.loads(json_string)
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """
-        Writes the JSON string representation of list_objs to a file
+        filename = cls.__name__ + ".json"
+        with open(filename, "w") as jsonfile:
+            if list_objs is None:
+                jsonfile.write("[]")
+            else:
+                list = [object.to_dictionary() for object in list_objs]
+                jsonfile.write(cls.to_json_string(list))
 
-        Args:
-            list_objs (:obj:`list[Base]`): A list of Base objects
-        """
-        if list_objs is None:
-            list_objs = []
-
-        with open(f'{cls.__name__}.json', 'w') as f:
-            lst_dict = list(map(lambda x: x.to_dictionary(), list_objs))
-            f.write(cls.to_json_string(lst_dict))
+    @staticmethod
+    def from_json_string(json_string):
+        if json_string is None or json_string == "[]":
+            return []
+        return json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
-        """
-        Gets an instance with all attributes already set
-
-        Args:
-            dictionary (:obj:`dict`): Dictionary with attributes to set
-
-        Returns:
-            An instance with all attributes already set
-        """
-        new_instance = cls(**dictionary)
-        new_instance.update(**dictionary)
-
-        return new_instance
+        if dictionary and dictionary != {}:
+            if cls.__name__ == "Rectangle":
+                new = cls(1, 1)
+            else:
+                new = cls(1)
+            new.update(**dictionary)
+            return new
 
     @classmethod
     def load_from_file(cls):
-        """
-        Gets a list of instances
-
-        Returns:
-            A list of instances
-        """
-        if not os.path.exists(f'{cls.__name__}.json'):
+        filename = str(cls.__name__) + ".json"
+        try:
+            with open(filename, "r") as jsonfile:
+                list_dicts = Base.from_json_string(jsonfile.read())
+                return [cls.create(**d) for d in list_dicts]
+        except IOError:
             return []
-
-        with open(f'{cls.__name__}.json', 'r') as f:
-            lst_dict = cls.from_json_string(f.read())
-
-            return list(map(lambda x: cls.create(**x), lst_dict))
-
-    @classmethod
-    def save_to_file_csv(cls, list_objs):
-        """
-        Writes the csv string representation of list_objs to a file
-
-        Args:
-            list_objs (:obj:`list[Base]`): A list of Base objects
-        """
-        if list_objs is None:
-            list_objs = []
-
-        with open(f'{cls.__name__}.csv', 'w', newline='') as f:
-            if cls.__name__ == 'Rectangle':
-                fieldnames = ['id', 'width', 'height', 'x', 'y']
-            else:
-                fieldnames = ['id', 'size', 'x', 'y']
-
-            writer = csv.DictWriter(f, fieldnames)
-            lst_dict = list(map(lambda x: x.to_dictionary(), list_objs))
-
-            writer.writeheader()
-            writer.writerows(lst_dict)
-
-    @classmethod
-    def load_from_file_csv(cls):
-        """
-        Gets a list of instances
-
-        Returns:
-            A list of instances
-        """
-        if not os.path.exists(f'{cls.__name__}.csv'):
-            return []
-
-        with open(f'{cls.__name__}.csv', 'r') as f:
-            csv_file = csv.DictReader(f)
-            lst_dict = [dict([a, int(x)] for a, x in b.items())
-                        for b in csv_file]
-
-            return list(map(lambda x: cls.create(**x), lst_dict))
