@@ -9,7 +9,7 @@ class TestRectangle(unittest.TestCase):
 
     def test_display(self):
         r = Rectangle(3, 2)
-        self.assertEqual(r.display(), None)
+        self.assertIsNone(r.display())
 
     def test_str(self):
         r = Rectangle(4, 6, 2, 1, 12)
@@ -27,3 +27,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(str(r), "[Rectangle] (89) 4/10 - 2/3")
         r.update(89, 2, 3, 4, 5)
         self.assertEqual(str(r), "[Rectangle] (89) 4/5 - 2/3")
+
+
+if __name__ == '__main__':
+    unittest.main()
