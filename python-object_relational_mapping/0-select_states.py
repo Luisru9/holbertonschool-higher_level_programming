@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """This script list all states from a database"""
 
-if_name_ == '_main_':
+if__name__ == '__main__':
 import MySQLdb
 import sys
 
