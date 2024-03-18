@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """This script list all states from a database"""
 
 if__name__ == '__main__':
